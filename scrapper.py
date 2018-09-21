@@ -9,7 +9,7 @@ from urllib.request import Request, urlopen
 
 
 hdr = {'User-Agent':'Mozilla/5.0'}
-site = input("copy the url         :") #### path to a thread the thread you want all image
+site = input("copy the url         :") #### path to a thread the thread you want all images
 counter = 1
 req = Request(site,headers=hdr)
 page = urlopen(req)
@@ -26,11 +26,13 @@ for i in allImg :
     req2 = Request(image,headers=hdr)
     page2 = urlopen(req)
     soup2 = BeautifulSoup(page2, "html.parser")
-    filename = str(counter)
-    counter = counter+1
+    filename = (image2).strip("/i4cdn.org/wg ")
     print(counter)
+    counter = counter+1
 
 
     imageFile = open(filename + ".png", 'wb')
     imageFile.write(urllib.request.urlopen(image).read())
     imageFile.close()
+
+print("CASH MONEY!")
