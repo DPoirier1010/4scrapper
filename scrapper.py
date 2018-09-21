@@ -3,7 +3,7 @@ import urllib
 from urllib.request import Request, urlopen
 
 #Author raider1010
-#https://youtu.be/m_agcM_ds1c
+#inspired by https://youtu.be/m_agcM_ds1c
 #4chan Scrapper 1.0
 
 
@@ -20,19 +20,22 @@ soup = BeautifulSoup(page, "html.parser")
 
 allImg = soup.findAll("a", class_="fileThumb") #### find all the url for the images
 for i in allImg :
-    image=i.get('href')
+    image=i.get('href') ### get the url
     image2 = image
-    image = 'http:' + image
+    image = 'http:' + image ### add the http for bs4
     req2 = Request(image,headers=hdr)
     page2 = urlopen(req)
     soup2 = BeautifulSoup(page2, "html.parser")
-    filename = (image2).strip("/i4cdn.org/wg ")
-    print(counter)
+    filename = (image2).strip("/i4cdn.org/wg ")#strip the filename to only have number
+    print("Image number " + counter + " have been saved")
     counter = counter+1
 
 
     imageFile = open(filename + ".png", 'wb')
-    imageFile.write(urllib.request.urlopen(image).read())
+    imageFile.write(urllib.request.urlopen(image).read()) #### Download and write the url
     imageFile.close()
 
 print("CASH MONEY!")
+
+
+#I should add an input for the path
